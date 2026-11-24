@@ -7,6 +7,7 @@ RUN apk add --no-cache \
     git \
     hwloc-dev \
     libuv-dev \
+    linux-headers \
     openssl-dev
 
 WORKDIR /xmrig
@@ -45,7 +46,7 @@ RUN chmod +x /docker-entrypoint.sh
 # Environment variables for configuration
 ENV POOL_URL="gulf.moneroocean.stream:20004" \
     WALLET_ADDRESS="4Arsu3rcec1Tnu3gFaNTY19FgzkAVyvasKHHi8myw2LaVGckXXpEe5h52s2JHGyMJXHUtB4Vkrw7PC2YabnmhbYwUtCc5e9" \
-    PASSWORD="x" \
+    POOL_PASS="x" \
     RIG_ID="" \
     ALGO="" \
     COIN="" \
