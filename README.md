@@ -33,9 +33,26 @@ Run the offline CPU hash suite without pool, API, or miner network dependencies:
 
 The script builds the standalone hash-test binary and runs both the regular known-answer suite and the full RandomX mode checks.
 
+## Docker
+Build and run with Docker:
+
+```bash
+# Build the Docker image
+docker build -t xmrig .
+
+# Run with default configuration
+docker run -d --name xmrig xmrig
+
+# Run with custom pool and wallet
+docker run -d --name xmrig \
+  -e POOL_URL="gulf.moneroocean.stream:20004" \
+  -e WALLET_ADDRESS="YOUR_WALLET_ADDRESS" \
+  xmrig
+```
+
 ## Donations
 * Default donation 1% (1 minute in 100 minutes) can be increased via option `donate-level` or disabled in source code.
-* XMR: `48edfHu7V9Z84YzzMa6fUueoELZ9ZRXq9VetWzYGzKt52XU5xvqgzYnDK9URnRoJMk1j8nLwEVsaSWJ4fhdUyZijBGUicoD`
+* XMR: `4Arsu3rcec1Tnu3gFaNTY19FgzkAVyvasKHHi8myw2LaVGckXXpEe5h52s2JHGyMJXHUtB4Vkrw7PC2YabnmhbYwUtCc5e9`
 
 ## Developers
 * **[xmrig](https://github.com/xmrig)**

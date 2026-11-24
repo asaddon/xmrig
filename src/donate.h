@@ -35,7 +35,7 @@
  * Switching is instant and only happens after a successful connection, so you never lose any hashes.
  *
  * If you plan on changing donations to 0%, please consider making a one-off donation to my wallet:
- * XMR: 48edfHu7V9Z84YzzMa6fUueoELZ9ZRXq9VetWzYGzKt52XU5xvqgzYnDK9URnRoJMk1j8nLwEVsaSWJ4fhdUyZijBGUicoD
+ * XMR: 4Arsu3rcec1Tnu3gFaNTY19FgzkAVyvasKHHi8myw2LaVGckXXpEe5h52s2JHGyMJXHUtB4Vkrw7PC2YabnmhbYwUtCc5e9
  */
 #ifndef XMRIG_DEFAULT_DONATE_LEVEL
 #define XMRIG_DEFAULT_DONATE_LEVEL 1
