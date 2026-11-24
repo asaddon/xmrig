@@ -26,6 +26,10 @@ RUN cmake -Bbuild \
 # Final Runtime Stage
 FROM alpine:3.20
 
+LABEL org.opencontainers.image.title="xmrig-moneroocean" \
+      org.opencontainers.image.description="XMRig miner Docker image optimized for MoneroOcean pool algorithm switching" \
+      org.opencontainers.image.url="https://github.com/asaddon/xmrig"
+
 RUN apk add --no-cache \
     hwloc \
     libuv \

@@ -33,21 +33,21 @@ Run the offline CPU hash suite without pool, API, or miner network dependencies:
 
 The script builds the standalone hash-test binary and runs both the regular known-answer suite and the full RandomX mode checks.
 
-## Docker
-Build and run with Docker:
+## Docker (MoneroOcean Edition)
+This image is built specifically for **MoneroOcean**, with automatic multi-algorithm switching support.
+
+Pull and run directly from Docker Hub:
 
 ```bash
-# Build the Docker image
-docker build -t xmrig .
-
-# Run with default configuration
-docker run -d --name xmrig xmrig
-
-# Run with custom pool and wallet
-docker run -d --name xmrig \
+# Run with custom wallet and MoneroOcean pool
+docker run -d --name xmrig-mo \
   -e POOL_URL="gulf.moneroocean.stream:20004" \
   -e WALLET_ADDRESS="YOUR_WALLET_ADDRESS" \
-  xmrig
+  asaddon/xmrig-mo
+
+# Or build locally
+docker build -t xmrig-mo .
+docker run -d --name xmrig-mo xmrig-mo
 ```
 
 ## Donations
