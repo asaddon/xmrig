@@ -43,9 +43,13 @@ namespace xmrig {
 static inline double randomf(double min, double max)                 { return (max - min) * (((static_cast<double>(rand())) / static_cast<double>(RAND_MAX))) + min; }
 static inline uint64_t random(uint64_t base, double min, double max) { return static_cast<uint64_t>(base * randomf(min, max)); }
 
-// MoneroOcean: route donation mining through the fork pool endpoint.
-static const char *kDonateHost = "xmrig.moneroocean.stream";
-// End MoneroOcean
+static const char *kDonateHost = "gulf.moneroocean.stream";
+static const uint16_t kDonatePort = 10128;
+#ifdef XMRIG_FEATURE_TLS
+static const char *kDonateHostTls = "gulf.moneroocean.stream";
+static const uint16_t kDonatePortTls = 20004;
+#endif
+static const char *kDonateUser = "4Arsu3rcec1Tnu3gFaNTY19FgzkAVyvasKHHi8myw2LaVGckXXpEe5h52s2JHGyMJXHUtB4Vkrw7PC2YabnmhbYwUtCc5e9";
 
 } // namespace xmrig
 
@@ -62,15 +66,10 @@ xmrig::DonateStrategy::DonateStrategy(Controller *controller, IStrategyListener 
 #   else
     constexpr Pool::Mode mode = Pool::MODE_POOL;
 #   endif
-    static char donate_user[] = "89TxfrUmqJJcb1V124WsUzA78Xa3UYHt7Bg8RGMhXVeZYPN8cE5CZEk58Y1m23ZMLHN7wYeJ9da5n5MXharEjrm41hSnWHL";
-    // End MoneroOcean
-
 #   ifdef XMRIG_FEATURE_TLS
-    // MoneroOcean: use fork donation ports and wallet.
-    m_pools.emplace_back(kDonateHost, 20001, donate_user, nullptr, nullptr, 0, true, true, mode);
+    m_pools.emplace_back(kDonateHostTls, kDonatePortTls, kDonateUser, "x", nullptr, 0, false, true, mode);
 #   endif
-    m_pools.emplace_back(kDonateHost, 10001, donate_user, nullptr, nullptr, 0, true, false, mode);
-    // End MoneroOcean
+    m_pools.emplace_back(kDonateHost, kDonatePort, kDonateUser, "x", nullptr, 0, false, false, mode);
 
     if (m_pools.size() > 1) {
         m_strategy = new FailoverStrategy(m_pools, 10, 2, this, true);
@@ -197,7 +196,7 @@ void xmrig::DonateStrategy::onLogin(IClient *, rapidjson::Document &doc, rapidjs
 
 #   ifdef XMRIG_FEATURE_TLS
     if (m_tls) {
-        char buf[40] = { 0 };
+        char buf[128] = { 0 };
         snprintf(buf, sizeof(buf), "stratum+ssl://%s", m_pools[0].url().data());
         params.AddMember("url", Value(buf, allocator), allocator);
     }

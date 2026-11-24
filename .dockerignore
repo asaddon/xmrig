@@ -1,0 +1,9 @@
+build/
+scripts/build/
+scripts/deps/
+.git/
+.github/
+.vscode/
+.idea/
+*.user
+*.cl

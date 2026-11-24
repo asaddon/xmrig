@@ -214,6 +214,10 @@ endif()
 add_definitions(-DXMRIG_MINER_PROJECT -DXMRIG_JSON_SINGLE_LINE_ARRAY)
 add_definitions(-D__STDC_FORMAT_MACROS -DUNICODE -D_FILE_OFFSET_BITS=64)
 
+if (DEFINED DONATE_LEVEL)
+    add_definitions(-DXMRIG_DEFAULT_DONATE_LEVEL=${DONATE_LEVEL})
+endif()
+
 find_package(UV REQUIRED)
 
 include(cmake/flags.cmake)
