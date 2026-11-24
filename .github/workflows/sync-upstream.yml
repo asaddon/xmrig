@@ -1,0 +1,48 @@
+name: Sync Upstream
+
+on:
+  schedule:
+    # Runs weekly on Sunday at 00:00 UTC
+    - cron: '0 0 * * 0'
+  # Allows triggering manually from the GitHub Actions UI anytime
+  workflow_dispatch:
+
+jobs:
+  sync:
+    name: Sync with Upstream
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: master
+          fetch-depth: 0
+
+      - name: Configure Git Author
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Fetch and Merge Upstream
+        run: |
+          # Upstream repository (default: MoneroOcean/xmrig)
+          git remote add upstream https://github.com/MoneroOcean/xmrig.git || true
+          git fetch upstream master
+
+          LOCAL=$(git rev-parse HEAD)
+          REMOTE=$(git rev-parse upstream/master)
+          BASE=$(git merge-base HEAD upstream/master)
+
+          if [ "$REMOTE" = "$BASE" ]; then
+            echo "Already up-to-date with upstream."
+            exit 0
+          fi
+
+          echo "New upstream changes detected. Merging..."
+          git merge upstream/master -m "chore: sync with upstream MoneroOcean/xmrig"
+
+          echo "Pushing merged changes to origin master..."
+          git push origin master
