@@ -5,6 +5,11 @@ on:
     tags:
       - 'v*'
   workflow_dispatch:
+    inputs:
+      tag_name:
+        description: 'Release tag name (e.g. v6.27.0-custom)'
+        required: false
+        default: 'v6.27.0-custom'
 
 permissions:
   contents: write
@@ -14,7 +19,7 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  VERSION: ${{ github.ref_name }}
+  VERSION: ${{ github.event.inputs.tag_name || github.ref_name }}
 
 jobs:
   windows:
@@ -298,6 +303,7 @@ jobs:
       - name: Create release
         uses: softprops/action-gh-release@v2
         with:
+          tag_name: ${{ github.event.inputs.tag_name || (startsWith(github.ref, 'refs/tags/') && github.ref_name || 'v6.27.0-custom') }}
           files: dist/*
           fail_on_unmatched_files: true
 
