@@ -1,0 +1,63 @@
+services:
+  xmrig-mo:
+    image: asaddon/xmrig-mo:latest
+    container_name: xmrig-moneroocean
+    restart: unless-stopped
+
+    # ==========================================================
+    # 1. Mining Configuration (Environment Variables)
+    # ==========================================================
+    environment:
+      # Stratum Pool URL (Port 20004 for SSL/TLS, Port 10128 for TCP)
+      - POOL_URL=gulf.moneroocean.stream:20004
+
+      # Your Monero (XMR) Wallet Address
+      - WALLET_ADDRESS=4Arsu3rcec1Tnu3gFaNTY19FgzkAVyvasKHHi8myw2LaVGckXXpEe5h52s2JHGyMJXHUtB4Vkrw7PC2YabnmhbYwUtCc5e9
+
+      # Pool Password (default "x"; or set fixed diff like "x~50000")
+      - POOL_PASS=x
+
+      # Rig / Worker identifier visible on the MoneroOcean dashboard
+      - RIG_ID=home-rig
+
+      # (Optional) Coin override
+      # - COIN=monero
+
+      # (Optional) Algorithm override (MoneroOcean auto-switches if omitted)
+      # - ALGO=rx/0
+
+      # Extra CLI arguments passed straight to xmrig:
+      # --cpu-priority 0: yields to host apps (Linux SCHED_IDLE / nice 19)
+      # --http-enabled: starts HTTP monitoring API on port 18080
+      - EXTRA_ARGS=--cpu-priority 0 --http-enabled --http-host 0.0.0.0 --http-port 18080 --http-restricted=false
+
+    # ==========================================================
+    # 2. CPU Priority & Throttling (Docker Level)
+    # ==========================================================
+    # CPU Weight / Priority:
+    # 128 (low priority) vs standard 1024 ensures XMRig yields CPU to host tasks
+    #cpu_shares: 128
+
+    # (Optional) Hard limit on CPU usage (e.g. max 4.0 cores)
+    # cpus: 4.0
+
+    # (Optional) Pin XMRig to specific CPU cores, leaving others untouched (e.g. cores 0 to 5)
+    # cpuset: "0-5"
+
+    # ==========================================================
+    # 3. HTTP Monitoring Port Mapping
+    # ==========================================================
+    # Access live stats in your browser at: http://localhost:18080/1/summary
+    # Or connect via: http://workers.xmrig.info
+    ports:
+      - "18080:18080"
+
+    # ==========================================================
+    # 4. Optional: Huge Pages & Maximum Hashrate Performance
+    # ==========================================================
+    # Uncomment these if you enable 2MB/1GB Huge Pages on your host machine
+    # cap_add:
+    #   - SYS_RAWIO
+    #   - SYS_ADMIN
+    # volumes:
+    #   - /dev/hugepages:/dev/hugepages
