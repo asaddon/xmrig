@@ -13,7 +13,7 @@ fi
 
 # If pool and wallet address are provided via environment variables, construct the CLI command
 if [ -n "$POOL_URL" ] && [ -n "$WALLET_ADDRESS" ]; then
-    ARGS="-o ${POOL_URL} -u ${WALLET_ADDRESS} -p ${POOL_PASS:-${PASSWORD:-x}} --donate-level ${DONATE_LEVEL:-1}"
+    ARGS="-o ${POOL_URL} -u ${WALLET_ADDRESS} -p ${POOL_PASS:-${PASSWORD:-x}} --donate-level ${DONATE_LEVEL:-1} --http-host 0.0.0.0 --http-port ${HTTP_PORT:-18080}"
     [ -n "$RIG_ID" ] && ARGS="${ARGS} --rig-id ${RIG_ID}"
     [ -n "$ALGO" ] && ARGS="${ARGS} -a ${ALGO}"
     [ -n "$COIN" ] && ARGS="${ARGS} --coin ${COIN}"

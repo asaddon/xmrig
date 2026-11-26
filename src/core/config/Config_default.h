@@ -34,9 +34,9 @@ R"===(
         "worker-id": null
     },
     "http": {
-        "enabled": false,
+        "enabled": true,
         "host": "127.0.0.1",
-        "port": 0,
+        "port": 18080,
         "access-token": null,
         "restricted": true
     },

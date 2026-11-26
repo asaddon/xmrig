@@ -53,5 +53,7 @@ ENV POOL_URL="gulf.moneroocean.stream:20004" \
     DONATE_LEVEL="1" \
     EXTRA_ARGS=""
 
+EXPOSE 18080
+
 ENTRYPOINT ["/docker-entrypoint.sh"]
 CMD ["xmrig"]
