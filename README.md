@@ -1,11 +1,11 @@
 # XMRig
 
-[![Github All Releases](https://img.shields.io/github/downloads/xmrig/xmrig/total.svg)](https://github.com/xmrig/xmrig/releases)
-[![GitHub release](https://img.shields.io/github/release/xmrig/xmrig/all.svg)](https://github.com/xmrig/xmrig/releases)
-[![GitHub Release Date](https://img.shields.io/github/release-date/xmrig/xmrig.svg)](https://github.com/xmrig/xmrig/releases)
-[![GitHub license](https://img.shields.io/github/license/xmrig/xmrig.svg)](https://github.com/xmrig/xmrig/blob/master/LICENSE)
-[![GitHub stars](https://img.shields.io/github/stars/xmrig/xmrig.svg)](https://github.com/xmrig/xmrig/stargazers)
-[![GitHub forks](https://img.shields.io/github/forks/xmrig/xmrig.svg)](https://github.com/xmrig/xmrig/network)
+[![Github All Releases](https://img.shields.io/github/downloads/asaddon/xmrig/total.svg)](https://github.com/asaddon/xmrig/releases)
+[![GitHub release](https://img.shields.io/github/release/asaddon/xmrig/all.svg)](https://github.com/asaddon/xmrig/releases)
+[![GitHub Release Date](https://img.shields.io/github/release-date/asaddon/xmrig.svg)](https://github.com/asaddon/xmrig/releases)
+[![GitHub license](https://img.shields.io/github/license/asaddon/xmrig.svg)](https://github.com/asaddon/xmrig/blob/master/LICENSE)
+[![GitHub stars](https://img.shields.io/github/stars/asaddon/xmrig.svg)](https://github.com/asaddon/xmrig/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/asaddon/xmrig.svg)](https://github.com/asaddon/xmrig/network)
 
 XMRig is a high performance, open source, cross platform RandomX, KawPow, CryptoNight and [GhostRider](https://github.com/xmrig/xmrig/tree/master/src/crypto/ghostrider#readme) unified CPU/GPU miner and [RandomX benchmark](https://xmrig.com/benchmark). Official binaries are available for Windows, Linux, macOS and FreeBSD.
 
@@ -15,7 +15,7 @@ XMRig is a high performance, open source, cross platform RandomX, KawPow, Crypto
 - **CUDA** for NVIDIA GPUs via external [CUDA plugin](https://github.com/xmrig/xmrig-cuda).
 
 ## Download
-* **[Binary releases](https://github.com/xmrig/xmrig/releases)**
+* **[Binary releases](https://github.com/asaddon/xmrig/releases)**
 * **[Build from source](https://xmrig.com/docs/miner/build)**
 
 ## Usage
@@ -35,6 +35,11 @@ The script builds the standalone hash-test binary and runs both the regular know
 
 ## Docker (MoneroOcean Edition)
 This image is built specifically for **MoneroOcean**, with automatic multi-algorithm switching support.
+
+* **Docker Hub:**
+  * **[asaddon/xmrig-mo](https://hub.docker.com/r/asaddon/xmrig-mo)**
+  * **[asaddon/xmrig-moneroocean](https://hub.docker.com/r/asaddon/xmrig-moneroocean)**
+  * **[Docker Hub Profile (@asaddon)](https://hub.docker.com/u/asaddon)**
 
 Pull and run directly from Docker Hub:
 
